@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, NavLink, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import BusinessNews from "./components/BusinessNews";
+import BitcoinNews from "./components/BitcoinNews";
+//import data from "./data/"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="app-links">
+        <nav className="app-nav">
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/business"}>Business</NavLink>
+          <NavLink to={"/bitcoin"}>Bitcoin</NavLink>
+        </nav>
+      </div>
+
+      <main>
+        <Switch>
+          <Route exact path={"/"}>
+          <Home />
+          </Route>
+          <Route exact path={"/business"}>
+          <BusinessNews BusinessNews={BUSINESS} />
+          </Route>
+          <Route exact path={"/bitcoin"}>
+            <BitcoinNews
+              BitcoinNews={BITCOIN}
+            />
+          </Route>
+        </Switch>
+      </main>
     </div>
   );
 }
